@@ -16,9 +16,12 @@ const globalErrorHandler: ErrorRequestHandler = async (
   } else if (error instanceof Error) {
     message = error?.message
   }
+
   res.status(statusCode).json({
     success: false,
     message: message,
     stack: config.env !== 'production' ? error?.stack : undefined
   })
 }
+
+export default globalErrorHandler

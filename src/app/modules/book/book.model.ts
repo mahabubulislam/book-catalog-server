@@ -6,6 +6,9 @@ const bookSchema = new Schema<IBook>({
     type: String,
     required: true
   },
+  img: {
+    type: String
+  },
   author: {
     type: String,
     required: true
