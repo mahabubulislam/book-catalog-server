@@ -9,9 +9,12 @@ import { ILoginResponse, ILoginUser } from './auth.interface';
 const loginUser = async (payload: ILoginUser): Promise<ILoginResponse> => {
   const { email, password } = payload;
 
-  const isUserExist = await User.findOne({ email }).select({ password: 1 });
+  const isUserExist = await User.findOne({ email }).select({
+    password: 1,
+    email: 1,
+    name: 1
+  });
   if (!isUserExist) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-  console.log(isUserExist);
   const isPasswordMatched = await User.isPasswordMatched(
     password,
     isUserExist.password
