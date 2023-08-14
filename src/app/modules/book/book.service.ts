@@ -46,7 +46,20 @@ const updateBook = async (
   id: string,
   payload: Partial<IBook>
 ): Promise<IBook | null> => {
-  const result = await Book.findByIdAndUpdate(id, payload);
+  const result = await Book.findByIdAndUpdate(id, payload, { new: true });
+  return result;
+};
+
+const addReview = async (
+  id: string,
+  payload: Partial<IBook>
+): Promise<IBook | null> => {
+  console.log(payload);
+  const result = await Book.findByIdAndUpdate(
+    id,
+    { $push: { reviews: payload } },
+    { new: true }
+  );
   return result;
 };
 const deleteBook = async (id: string): Promise<void> => {
@@ -57,5 +70,6 @@ export const bookService = {
   getAllBooks,
   getSingleBook,
   updateBook,
-  deleteBook
+  deleteBook,
+  addReview
 };
