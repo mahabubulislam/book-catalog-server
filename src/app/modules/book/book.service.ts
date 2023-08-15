@@ -29,7 +29,7 @@ const getAllBooks = async (
   }
   const sortConditions: { [key: string]: SortOrder } = {};
   if (sortBy) {
-    sortConditions[sortBy] = 'ascending';
+    sortConditions[sortBy] = 'desc';
   }
   const whereConditions =
     andConditions.length > 0 ? { $and: andConditions } : {};
