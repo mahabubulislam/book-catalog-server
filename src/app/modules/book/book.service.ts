@@ -54,7 +54,6 @@ const addReview = async (
   id: string,
   payload: Partial<IBook>
 ): Promise<IBook | null> => {
-  console.log(payload);
   const result = await Book.findByIdAndUpdate(
     id,
     { $push: { reviews: payload } },
